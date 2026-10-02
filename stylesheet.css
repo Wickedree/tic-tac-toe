@@ -96,6 +96,8 @@ h1 {
     border-radius: 15px;
     padding: 0.5em;
     color: var(--cream);
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #restart-game-btn {
@@ -104,6 +106,8 @@ h1 {
     border-radius: 15px;
     padding: 0.5em;
     color: var(--watermelon-pink);
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #restart-game-btn:hover, #start-game-btn:hover {
