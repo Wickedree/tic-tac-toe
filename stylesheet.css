@@ -34,12 +34,6 @@ h1 {
     gap: 20px;
 }
 
-@media screen and (max-width: 600px) {
-  .page-main-container {
-    flex-direction: column;
-  }
-}
-
 #player-panel {
     display: flex;
     flex-direction: column;
@@ -148,4 +142,17 @@ h1 {
     color: var(--cream);
     font-size: 2em;
     font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .page-main-container {
+    flex-direction: column;
+    }
+    #player-panel {
+    height: 200px;
+    padding: 0.8em;
+    }
 }
