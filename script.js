@@ -17,27 +17,29 @@ Is the game over?
 
 //THIS IS AN IIFE to create a private variable
 const Gameboard = (() => {
-     let gameboard = ["", "", "", "", "", "", "", "", ""]
+    let gameboard = ["", "", "", "", "", "", "", "", ""];
 
-     const displayGameboard = () => {
+    const displayGameboard = () => {
         let boardHTML = "";
-        gameboard.forEach((square,index) => {
-            boardHTML += `<div class="square" id=square-${index}`>${square}</div>
-        })
-     }
-     //USE DOM to add this to HTML
 
-     return {
+        gameboard.forEach((square, index) => {
+            boardHTML += `<div class="square" id="square-${index}">${square}</div>`;
+        });
+
+        document.querySelector("#gameboard").innerHTML = boardHTML;
+    };
+
+    return {
         displayGameboard,
-     }
+    };
 })();
 
 const createPlayerFactory = (name, mark) => {
     return {
         name,
         mark
-    }
-}
+    };
+};
 
 const gameController = (() => {
     let players = [];
@@ -46,17 +48,29 @@ const gameController = (() => {
 
     const start = () => {
         players = [
-            createPlayerFactory(document.querySelector("#playerOne").value, "X"),
-            createPlayerFactory(document.querySelector("#playerTwo").value, "O")
-        ]
+            createPlayerFactory(
+                document.querySelector("#playerOne").value,
+                "X"
+            ),
+            createPlayerFactory(
+                document.querySelector("#playerTwo").value,
+                "O"
+            )
+        ];
 
         currentPlayer = 0;
         gameOver = false;
+
         Gameboard.displayGameboard();
-    }
+    };
+
+    return {
+        start
+    };
 })();
 
-const startButton = document.querySelector(); //ID
+const startButton = document.querySelector("#start-game-btn");
+
 startButton.addEventListener("click", () => {
-      gameController.start();
-})
+    gameController.start();
+});
