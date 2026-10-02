@@ -5,11 +5,11 @@ const Gameboard = (() => {
         let boardHTML = "";
 
         gameboard.forEach((square, index) => {
-            boardHTML += `
-                <div class="square" id="square-${index}">
-                    ${square}
-                </div>
-            `;
+            if (square === "") {
+                boardHTML += `<div class="square" id="square-${index}"></div>`;
+            } else {
+                boardHTML += `<div class="square ${square.playerClass}" id="square-${index}">${square.mark}</div>`;
+            }
         });
 
         document.querySelector("#gameboard").innerHTML = boardHTML;
@@ -19,9 +19,13 @@ const Gameboard = (() => {
         return gameboard;
     };
 
-    const placeMark = (index, mark) => {
+    const placeMark = (index, player) => {
         if (gameboard[index] === "") {
-            gameboard[index] = mark;
+            gameboard[index] = {
+                mark: player.mark,
+                playerClass: player.playerClass
+            };
+
             return true;
         }
 
@@ -41,10 +45,11 @@ const Gameboard = (() => {
 })();
 
 
-const createPlayerFactory = (name, mark) => {
+const createPlayerFactory = (name, mark, playerClass) => {
     return {
         name,
-        mark
+        mark,
+        playerClass
     };
 };
 
@@ -66,21 +71,21 @@ const gameController = (() => {
         }
 
         players = [
-            createPlayerFactory(playerOneName, "X"),
-            createPlayerFactory(playerTwoName, "O")
+            createPlayerFactory(playerOneName, "X", "player-one"),
+            createPlayerFactory(playerTwoName, "O", "player-two")
         ];
 
         currentPlayer = 0;
         gameOver = false;
 
+        document.querySelector("#message").textContent = "";
+
         Gameboard.reset();
         Gameboard.displayGameboard();
 
         addSquareListeners();
-
         displayMessage();
     };
-
 
     const addSquareListeners = () => {
         const squares = document.querySelectorAll(".square");
@@ -92,7 +97,6 @@ const gameController = (() => {
         });
     };
 
-
     const playRound = (index) => {
         if (gameOver) {
             return;
@@ -100,7 +104,7 @@ const gameController = (() => {
 
         const player = players[currentPlayer];
 
-        const moveMade = Gameboard.placeMark(index, player.mark);
+        const moveMade = Gameboard.placeMark(index, player);
 
         if (!moveMade) {
             return;
@@ -114,11 +118,9 @@ const gameController = (() => {
             currentPlayer = currentPlayer === 0 ? 1 : 0;
 
             addSquareListeners();
-
             displayMessage();
         }
     };
-
 
     const checkGameOver = () => {
         const board = Gameboard.getBoard();
@@ -139,8 +141,8 @@ const gameController = (() => {
 
             if (
                 board[a] !== "" &&
-                board[a] === board[b] &&
-                board[a] === board[c]
+                board[a].mark === board[b].mark &&
+                board[a].mark === board[c].mark
             ) {
                 gameOver = true;
 
@@ -156,7 +158,7 @@ const gameController = (() => {
             }
         }
 
-        if (!board.includes("")) {
+        if (board.every(square => square !== "")) {
             gameOver = true;
 
             document.querySelector("#message").textContent =
@@ -167,7 +169,6 @@ const gameController = (() => {
         }
     };
 
-
     const displayMessage = () => {
         const player = players[currentPlayer];
 
@@ -175,24 +176,21 @@ const gameController = (() => {
             `${player.name}'s turn (${player.mark})`;
     };
 
-
     const restart = () => {
         Gameboard.reset();
 
         currentPlayer = 0;
         gameOver = false;
 
-        document.querySelector("#result-display").textContent = "";
+        document.querySelector("#message").textContent = "";
 
         if (players.length > 0) {
             Gameboard.displayGameboard();
 
             addSquareListeners();
-
             displayMessage();
         }
     };
-
 
     return {
         start,
