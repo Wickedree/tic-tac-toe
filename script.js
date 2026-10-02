@@ -46,8 +46,8 @@ const gameController = (() => {
 
     const start = () => {
         players = [
-            createPlayerFactory(document.querySelector().value, "X"), //ADD ID
-            createPlayerFactory(document.querySelector().value, "O")  //ADD ID
+            createPlayerFactory(document.querySelector("#playerOne").value, "X"),
+            createPlayerFactory(document.querySelector("#playerTwo").value, "O")
         ]
 
         currentPlayer = 0;
