@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink-beige: #DF8585;
+    --cream: #EFDFBB;
+    --hot-pink: #FC5984;
+    --baby-blue: #94D5BF;
+    --watermelon-pink: #FC5164;
+}
