@@ -11,3 +11,41 @@
     --baby-blue: #94D5BF;
     --watermelon-pink: #FC5164;
 }
+
+body {
+    background-color: var(--cream);
+}
+
+h1 {
+    color: var(--hot-pink);
+    text-align: center;
+}
+
+.page-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#player-panel {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    border: none;
+    padding: 1.5em;
+}
+
+#game-container {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    border: none;
+    padding: 1.5em;
+}
+
+.result-turns-display-container {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    border: none;
+    padding: 1.5em;
+}
+
