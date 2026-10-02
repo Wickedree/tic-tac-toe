@@ -1,4 +1,4 @@
-* {
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -26,6 +26,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    row-gap: 1.5em;
 }
 
 #player-panel {
@@ -35,11 +36,28 @@ h1 {
     padding: 1.5em;
 }
 
-#game-container {
+#gameboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 300px;
     background-color: var(--pink-beige);
     border-radius: 15px;
     border: none;
     padding: 1.5em;
+}
+
+.square {
+    display: flex;
+    border: 1px solid var(--cream);
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    height: 33.33%;
+    text-align: center;
+    font-size: 80px;
 }
 
 .result-turns-display-container {
@@ -47,5 +65,96 @@ h1 {
     border-radius: 15px;
     border: none;
     padding: 1.5em;
+}*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+:root {
+    --pink-beige: #DF8585;
+    --cream: #EFDFBB;
+    --hot-pink: #FC5984;
+    --baby-blue: #94D5BF;
+    --watermelon-pink: #FC5164;
+}
+
+body {
+    background-color: var(--cream);
+}
+
+h1 {
+    color: var(--hot-pink);
+    text-align: center;
+    margin: 30px 0;
+}
+
+.page-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#player-panel {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    padding: 1.5em;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#game-container {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    padding: 1.5em;
+}
+
+#gameboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--hot-pink);
+    width: 33.333%;
+    height: 33.333%;
+    font-size: 80px;
+    cursor: pointer;
+}
+
+.square:hover {
+    background-color: var(--cream);
+}
+
+.result-turns-display-container {
+    background-color: var(--pink-beige);
+    border-radius: 15px;
+    padding: 1.5em;
+    text-align: center;
+    min-width: 300px;
+}
+
+#message {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#result-display {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 
